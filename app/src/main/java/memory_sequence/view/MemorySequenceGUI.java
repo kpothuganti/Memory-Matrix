@@ -31,7 +31,7 @@ public class MemorySequenceGUI {
 
         for (int i = 0; i < 9; i++) {
             JButton button = new JButton();
-            if (i == 0 || i == 4)
+            if (i == 0)
             {
                 button.setBackground(new Color(135, 206, 235)); // Hard coding some button colors for pattern demonstration
             }
@@ -50,21 +50,30 @@ public class MemorySequenceGUI {
         controlPanel.setBackground(new Color(192, 192, 192));
 
         JButton startButton = new JButton("Start");
+        startButton.setEnabled(false); // To represent that Start is disabled once the game starts
         JButton resetButton = new JButton("Reset");
-        JButton challengeButton = new JButton("Challenge");
 
         controlPanel.add(startButton);
         controlPanel.add(resetButton);
-        controlPanel.add(challengeButton);
 
         // To keep track of user score
-        JLabel scoreLabel = new JLabel("Score: 0", SwingConstants.RIGHT);
+        JLabel scoreLabel = new JLabel("Score: 0");
         scoreLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        JLabel highScoreLabel = new JLabel("High Score: 101");
+        highScoreLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        // Create a JPanel to hold both labels horizontally
+        JPanel scorePanel = new JPanel();
+        scorePanel.setLayout(new BoxLayout(scorePanel, BoxLayout.X_AXIS));
+        scorePanel.add(scoreLabel);
+        scorePanel.add(Box.createHorizontalStrut(300)); // Add some spacing between the labels
+        scorePanel.add(highScoreLabel);
 
         mainPanel.add(boardPanel, BorderLayout.CENTER);
         mainPanel.add(controlPanel, BorderLayout.SOUTH);
-        mainPanel.add(scoreLabel, BorderLayout.NORTH);
-
+        mainPanel.add(scorePanel, BorderLayout.NORTH);
+        
         mainFrame.add(mainPanel);
         mainFrame.setVisible(true);
     }
