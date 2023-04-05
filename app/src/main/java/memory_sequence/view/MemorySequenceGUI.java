@@ -43,6 +43,7 @@ public class MemorySequenceGUI {
             gamePanel.add(button);
         }
 
+        gamePanel.setOpaque(true);
         boardPanel.add(gamePanel);
 
         // Control panel will alow the user to control game state with buttons
