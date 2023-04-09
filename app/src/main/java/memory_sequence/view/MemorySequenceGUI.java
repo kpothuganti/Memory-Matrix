@@ -26,7 +26,7 @@ public class MemorySequenceGUI {
         
         // Actual board with buttons
         JPanel gamePanel = new JPanel(new GridLayout(3, 3));
-        //gamePanel.setBackground(new Color(0, 0, 139));
+        gamePanel.setBackground(new Color(0, 0, 139));
         gamePanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         for (int i = 0; i < 9; i++) {
@@ -38,17 +38,15 @@ public class MemorySequenceGUI {
             }
             else
             {
-                button.setOpaque(false);
+                button.setOpaque(true);
                 button.setBackground(new Color(0, 0, 0));
             }
 
             gamePanel.add(button);
         }
 
-        gamePanel.setOpaque(true);
         boardPanel.add(gamePanel);
-        boardPanel.setOpaque(true);
-
+        
         // Control panel will alow the user to control game state with buttons
         JPanel controlPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         controlPanel.setBackground(new Color(192, 192, 192));
