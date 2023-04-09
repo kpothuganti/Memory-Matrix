@@ -33,13 +33,13 @@ public class MemorySequenceGUI {
             JButton button = new JButton();
             if (i == 0)
             {
-                button.setBackground(new Color(135, 206, 235)); // Hard coding some button colors for pattern demonstration
                 button.setOpaque(true);
+                button.setBackground(new Color(135, 206, 235)); // Hard coding some button colors for pattern demonstration
             }
             else
             {
-                button.setBackground(new Color(0, 0, 0));
                 button.setOpaque(true);
+                button.setBackground(new Color(0, 0, 0));
             }
 
             gamePanel.add(button);
