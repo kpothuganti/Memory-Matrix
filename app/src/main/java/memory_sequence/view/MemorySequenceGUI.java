@@ -34,10 +34,12 @@ public class MemorySequenceGUI {
             if (i == 0)
             {
                 button.setBackground(new Color(135, 206, 235)); // Hard coding some button colors for pattern demonstration
+                button.setOpaque(true);
             }
             else
             {
                 button.setBackground(new Color(0, 0, 0));
+                button.setOpaque(true);
             }
 
             gamePanel.add(button);
@@ -45,6 +47,7 @@ public class MemorySequenceGUI {
 
         gamePanel.setOpaque(true);
         boardPanel.add(gamePanel);
+        boardPanel.setOpaque(true);
 
         // Control panel will alow the user to control game state with buttons
         JPanel controlPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
