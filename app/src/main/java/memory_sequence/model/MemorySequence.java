@@ -84,4 +84,9 @@ public class MemorySequence
     {
         return this.mode;
     }
+
+    public int getScore()
+    {
+        return this.score;
+    }
 }
