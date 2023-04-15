@@ -62,6 +62,7 @@ public class MemorySequence
         }
 
         this.guessCheck = true;
+        this.generateStep();
         this.score += 1;
     }
 
