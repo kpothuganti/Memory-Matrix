@@ -8,8 +8,8 @@ public class MemorySequence
     private int min;
     private int max;
     private String mode;
-    private ArrayList<Integer> pattern = new ArrayList<int>();
-    private ArrayList<Integer> userPattern = new ArrayList<int>();
+    private ArrayList<Integer> pattern = new ArrayList<Integer>();
+    private ArrayList<Integer> userPattern = new ArrayList<Integer>();
     private ArrayList<GameObserver> observers = new ArrayList<GameObserver>();
     private int score;
     private boolean guessCheck;
@@ -37,7 +37,7 @@ public class MemorySequence
 
     public void generateStep()
     {
-        int step = (Math.random() * this.max) + min;
+        int step = (int) (Math.random() * this.max) + min;
         this.pattern.add(step);
     }
 
