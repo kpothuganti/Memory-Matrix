@@ -52,7 +52,7 @@ public class MemorySequence
 
     public void validateGuess()
     {
-        for (int i = 0; i < this.pattern.size(); i++)
+        for (int i = 0; i < this.userPattern.size(); i++)
         {
             if (this.userPattern.get(i) != this.pattern.get(i))
             {
@@ -60,10 +60,16 @@ public class MemorySequence
                 return;
             }
         }
+        
+        // Once the round is over and each guess is correct, reset the userPattern, update score, make next step
+        if (this.userPattern.size() == this.pattern.size())
+        {
+            this.generateStep();
+            this.userPattern.clear();
+            this.score += 1;
+        }
 
         this.guessCheck = true;
-        this.generateStep();
-        this.score += 1;
     }
 
     public boolean isGameOver()
