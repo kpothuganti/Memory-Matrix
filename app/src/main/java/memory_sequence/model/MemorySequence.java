@@ -19,6 +19,7 @@ public class MemorySequence
         this.min = 1;
         this.max = gridSize * gridSize;
         this.mode = mode;
+        this.score = 0;
         this.generateStep(); // Sets up the initial step in the pattern for when the game starts
     }
 
@@ -61,6 +62,7 @@ public class MemorySequence
         }
 
         this.guessCheck = true;
+        this.score += 1;
     }
 
     public boolean isGameOver()
