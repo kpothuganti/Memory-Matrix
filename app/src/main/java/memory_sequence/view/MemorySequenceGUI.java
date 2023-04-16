@@ -1,9 +1,15 @@
 package memory_sequence.view;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+
 import javax.swing.*;
 
-public class MemorySequenceGUI {
+import memory_sequence.model.MemorySequence;
+
+public class MemorySequenceGUI implements ActionListener {
+    private MemorySequence game;
+
     public MemorySequenceGUI() {
         
         JFrame mainFrame = new JFrame("Memory Sequence");
@@ -80,5 +86,20 @@ public class MemorySequenceGUI {
         
         mainFrame.add(mainPanel);
         mainFrame.setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent event)
+    {
+        JButton button = (JButton)event.getSource();
+        String text = button.getText();
+    }
+
+    @Override
+    public void update()
+    {
+        if (game.isGameOver()) {
+
+        }
     }
 }
