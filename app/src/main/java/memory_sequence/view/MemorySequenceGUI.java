@@ -40,6 +40,7 @@ public class MemorySequenceGUI implements ActionListener, GameObserver {
 
         // Title label for the game
         JLabel title = new JLabel("Memory Sequence Game", SwingConstants.CENTER);
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
         title.setFont(new Font("Arial", Font.BOLD, 20));
         title.setForeground(new Color(255, 255, 255));
         boardPanel.add(title);
@@ -53,8 +54,9 @@ public class MemorySequenceGUI implements ActionListener, GameObserver {
             JButton button = new JButton(String.valueOf(i));
 
             button.setOpaque(true);
-            button.setBorderPainted(false);
+            button.setBorderPainted(true);
             button.setBackground(new Color(0, 0, 0));
+            button.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 
             button.addActionListener(this);
 

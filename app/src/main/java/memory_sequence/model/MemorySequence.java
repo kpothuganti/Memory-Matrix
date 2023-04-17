@@ -86,6 +86,10 @@ public class MemorySequence {
         return this.mode;
     }
 
+    public void setMode(String mode) {
+        this.mode = mode;
+    }
+
     public int getScore() {
         return this.score;
     }

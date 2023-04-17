@@ -1,10 +1,20 @@
 package memory_sequence.view;
 
 import java.awt.*;
+import java.awt.event.*;
+
 import javax.swing.*;
 
-public class HomeScreenGUI {
-    public HomeScreenGUI()
+import memory_sequence.ControllerInterface;
+import memory_sequence.model.*;
+import memory_sequence.model.MemorySequence;
+
+
+public class HomeScreenGUI implements ActionListener {
+
+    private ControllerInterface controller;
+
+    public HomeScreenGUI(ControllerInterface controller)
     {
         JFrame mainFrame = new JFrame("Memory Sequence");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,21 +44,42 @@ public class HomeScreenGUI {
 
         boardPanel.add(question);
 
-        JButton regular = new JButton("Regular");
+        JButton regular = new JButton("basic");
         regular.setAlignmentX(Component.CENTER_ALIGNMENT);
+        regular.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                controller.userChoose(regular.getText());
+            }
+        });
 
-        JButton expand = new JButton("Expand");
+        JButton expand = new JButton("expand");
         expand.setAlignmentX(Component.CENTER_ALIGNMENT);
+        expand.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                controller.userChoose("expand");
+            }
+        });
 
-        JButton expert = new JButton("Expand");
-        expert.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JButton advanced = new JButton("advanced");
+        advanced.setAlignmentX(Component.CENTER_ALIGNMENT);
+        advanced.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e){
+                controller.userChoose("advanced");
+            }
+        });
 
         boardPanel.add(regular);
         boardPanel.add(expand);
-        boardPanel.add(expert);
+        boardPanel.add(advanced);
 
         mainPanel.add(boardPanel);
         mainFrame.add(mainPanel);
         mainFrame.setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        //work with this later
     }
 }
