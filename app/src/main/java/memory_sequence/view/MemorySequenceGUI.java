@@ -107,7 +107,7 @@ public class MemorySequenceGUI implements ActionListener, GameObserver {
     }
 
     public void flashPattern() {
-        ArrayList<Integer> pattern = new ArrayList<Integer>();
+        ArrayList<Integer> pattern = game.getPattern();
 
         for (JButton button : buttons) {
             button.setEnabled(false);
