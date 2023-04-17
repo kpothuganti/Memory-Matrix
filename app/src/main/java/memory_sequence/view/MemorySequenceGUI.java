@@ -75,6 +75,9 @@ public class MemorySequenceGUI implements ActionListener, GameObserver {
         startButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 flashPattern();
+                for (JButton button : buttons) {
+                    button.setEnabled(true);
+                }
             }
         });
 
