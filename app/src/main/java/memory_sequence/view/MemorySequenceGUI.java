@@ -53,7 +53,7 @@ public class MemorySequenceGUI implements ActionListener, GameObserver {
             JButton button = new JButton(String.valueOf(i));
 
             button.setOpaque(true);
-            button.setBorderPainted(false);
+            button.setBorderPainted(true);
             button.setBackground(new Color(0, 0, 0));
 
             button.addActionListener(this);
@@ -142,7 +142,7 @@ public class MemorySequenceGUI implements ActionListener, GameObserver {
             // have screen say message that game is over
         }
 
-        else if (game.getUserPattern().size() == game.getPattern().size()) {
+        else if (game.getUserPattern().size() == 0) {
             this.flashPattern();
             for (JButton button : buttons) {
                 button.setEnabled(true);
