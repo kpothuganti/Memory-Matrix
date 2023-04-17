@@ -53,7 +53,7 @@ public class MemorySequenceGUI implements ActionListener, GameObserver {
             JButton button = new JButton(String.valueOf(i));
 
             button.setOpaque(true);
-            button.setBorderPainted(true);
+            button.setBorderPainted(false);
             button.setBackground(new Color(0, 0, 0));
 
             button.addActionListener(this);
@@ -75,6 +75,7 @@ public class MemorySequenceGUI implements ActionListener, GameObserver {
         startButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 flashPattern();
+                startButton.setEnabled(false);
                 for (JButton button : buttons) {
                     button.setEnabled(true);
                 }
@@ -116,14 +117,35 @@ public class MemorySequenceGUI implements ActionListener, GameObserver {
             button.setEnabled(false);
         }
 
-        if (game.getMode() == "advanced") {
+        if (game.getMode().equals("advanced")) {
             buttons.get(pattern.size() - 1).setBackground(new Color(135, 206, 235));
         }
 
-        if (game.getMode() == "basic") {
-            for (int i : pattern) {
-                buttons.get(i - 1).setBackground(new Color(135, 206, 235));
-            }
+        if (game.getMode().equals("basic")) {
+            Timer timer = new Timer(500, null);
+            timer.addActionListener(new ActionListener() {
+                int index = 0;
+                boolean toggle = true;
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (index < pattern.size()) {
+                        int buttonIndex = pattern.get(index) - 1;
+                        if (toggle) {
+                            buttons.get(buttonIndex).setBackground(new Color(135, 206, 235));
+                        } else {
+                            buttons.get(buttonIndex).setBackground(new Color(0, 0, 0));
+                            index++;
+                        }
+                        toggle = !toggle;
+                    } else {
+                        timer.stop();
+                        for (JButton button : buttons) {
+                            button.setEnabled(true);
+                        }
+                    }
+                }
+            });
+            timer.start();
         }
     }
 
