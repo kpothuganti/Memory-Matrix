@@ -20,6 +20,7 @@ public class MemorySequence {
         this.max = 9;
         this.score = 0;
         this.dimension = 3;
+        this.mode = "basic";
         this.generateStep(); // Sets up the initial step in the pattern for when the game starts
     }
 
