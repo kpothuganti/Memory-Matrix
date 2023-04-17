@@ -1,6 +1,7 @@
 package memory_sequence.model;
 
 import java.util.ArrayList;
+
 import memory_sequence.GameObserver;
 
 public class MemorySequence {
@@ -12,11 +13,13 @@ public class MemorySequence {
     private ArrayList<GameObserver> observers = new ArrayList<GameObserver>();
     private int score;
     private boolean guessCheck;
+    private int dimension;
 
     public MemorySequence() {
         this.min = 1;
         this.max = 9;
         this.score = 0;
+        this.dimension = 3;
         this.generateStep(); // Sets up the initial step in the pattern for when the game starts
     }
 
@@ -67,6 +70,7 @@ public class MemorySequence {
 
     public void setGridSize(int size) {
         this.max = size * size;
+        this.dimension = size;
     }
 
     public ArrayList<Integer> getPattern() {
@@ -87,5 +91,9 @@ public class MemorySequence {
 
     public int getSize() {
         return this.max;
+    }
+
+    public int getGridDimension() {
+        return this.dimension;
     }
 }

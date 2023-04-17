@@ -1,17 +1,30 @@
 package memory_sequence.view;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
+import java.awt.event.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 import javax.swing.*;
+import javax.swing.text.html.parser.ContentModel;
+
+import memory_sequence.ControllerInterface;
+import memory_sequence.model.*;
+import memory_sequence.GameObserver;
 
 import memory_sequence.model.MemorySequence;
 
-public class MemorySequenceGUI implements ActionListener {
+public class MemorySequenceGUI implements ActionListener, GameObserver {
     private MemorySequence game;
-    private HomeScreenGUI homeScreenGUI;
+    private ControllerInterface controller;
+    private ArrayList<JButton> buttons = new ArrayList<JButton>();
 
-    public MemorySequenceGUI() {
+    public MemorySequenceGUI(ControllerInterface controller, MemorySequence game) {
+
+        this.controller = controller;
+        this.game = game;
+
+        this.game.register(this);
 
         JFrame mainFrame = new JFrame("Memory Sequence");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,22 +45,20 @@ public class MemorySequenceGUI implements ActionListener {
         boardPanel.add(title);
 
         // Actual board with buttons
-        JPanel gamePanel = new JPanel(new GridLayout(3, 3));
+        JPanel gamePanel = new JPanel(new GridLayout(this.game.getGridDimension(), this.game.getGridDimension()));
         gamePanel.setBackground(new Color(0, 0, 139));
         gamePanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        for (int i = 0; i < 9; i++) {
-            JButton button = new JButton();
-            if (i == 0) {
-                button.setOpaque(true);
-                button.setBorderPainted(false);
-                button.setBackground(new Color(135, 206, 235)); // Hard coding some button colors for pattern
-                                                                // demonstration
-            } else {
-                button.setOpaque(true);
-                button.setBorderPainted(false);
-                button.setBackground(new Color(0, 0, 0));
-            }
+        for (int i = 1; i < this.game.getSize() + 1; i++) {
+            JButton button = new JButton(String.valueOf(i));
+
+            button.setOpaque(true);
+            button.setBorderPainted(false);
+            button.setBackground(new Color(0, 0, 0));
+
+            button.addActionListener(this);
+
+            buttons.add(button);
 
             gamePanel.add(button);
         }
@@ -59,8 +70,16 @@ public class MemorySequenceGUI implements ActionListener {
         controlPanel.setBackground(new Color(192, 192, 192));
 
         JButton startButton = new JButton("Start");
-        startButton.setEnabled(false); // To represent that Start is disabled once the game starts
+        startButton.setEnabled(true); // To represent that Start is disabled once the game starts
+
+        startButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                flashPattern();
+            }
+        });
+
         JButton resetButton = new JButton("Reset");
+        // resetButton.addActionListener(this);
 
         controlPanel.add(startButton);
         controlPanel.add(resetButton);
@@ -88,14 +107,30 @@ public class MemorySequenceGUI implements ActionListener {
     }
 
     public void flashPattern() {
-        // flash initial step in pattern - call game.generateStep() and display on
-        // screen
+        ArrayList<Integer> pattern = new ArrayList<Integer>();
+
+        for (JButton button : buttons) {
+            button.setEnabled(false);
+        }
+
+        if (game.getMode() == "advanced") {
+            buttons.get(pattern.size() - 1).setBackground(new Color(135, 206, 235));
+        }
+
+        if (game.getMode() == "basic") {
+            for (int i : pattern) {
+                buttons.get(i - 1).setBackground(new Color(135, 206, 235));
+            }
+        }
     }
 
     @Override
     public void actionPerformed(ActionEvent event) {
+
         JButton button = (JButton) event.getSource();
         String text = button.getText();
+
+        controller.userPressed(text.charAt(0));
     }
 
     @Override
@@ -105,9 +140,10 @@ public class MemorySequenceGUI implements ActionListener {
         }
 
         else if (game.getUserPattern().size() == game.getPattern().size()) {
-            // disable all buttons
-            // call flashPattern() --> either next step or entire pattern - depending on
-            // game.getMode() being regular or advanced
+            this.flashPattern();
+            for (JButton button : buttons) {
+                button.setEnabled(true);
+            }
         }
     }
 }

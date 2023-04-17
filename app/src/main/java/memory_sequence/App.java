@@ -1,9 +1,11 @@
 package memory_sequence;
-import memory_sequence.view.*;
+
+import memory_sequence.model.*;
+import memory_sequence.controller.*;;
 
 public class App {
     public static void main(String[] args) {
-        MemorySequenceGUI prototype = new MemorySequenceGUI();
-        HomeScreenGUI pro2 = new HomeScreenGUI();
+        MemorySequence game = new MemorySequence();
+        GameController controller = new GameController(game);
     }
 }
