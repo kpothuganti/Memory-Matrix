@@ -88,7 +88,8 @@ public class MemorySequenceGUI implements ActionListener {
     }
 
     public void flashPattern() {
-        // flash initial step in pattern
+        // flash initial step in pattern - call game.generateStep() and display on
+        // screen
     }
 
     @Override
