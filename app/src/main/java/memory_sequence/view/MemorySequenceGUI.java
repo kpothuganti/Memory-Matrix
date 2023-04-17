@@ -9,9 +9,10 @@ import memory_sequence.model.MemorySequence;
 
 public class MemorySequenceGUI implements ActionListener {
     private MemorySequence game;
+    private HomeScreenGUI homeScreenGUI;
 
     public MemorySequenceGUI() {
-        
+
         JFrame mainFrame = new JFrame("Memory Sequence");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setSize(500, 500);
@@ -29,7 +30,7 @@ public class MemorySequenceGUI implements ActionListener {
         title.setFont(new Font("Arial", Font.BOLD, 20));
         title.setForeground(new Color(255, 255, 255));
         boardPanel.add(title);
-        
+
         // Actual board with buttons
         JPanel gamePanel = new JPanel(new GridLayout(3, 3));
         gamePanel.setBackground(new Color(0, 0, 139));
@@ -37,14 +38,12 @@ public class MemorySequenceGUI implements ActionListener {
 
         for (int i = 0; i < 9; i++) {
             JButton button = new JButton();
-            if (i == 0)
-            {
+            if (i == 0) {
                 button.setOpaque(true);
                 button.setBorderPainted(false);
-                button.setBackground(new Color(135, 206, 235)); // Hard coding some button colors for pattern demonstration
-            }
-            else
-            {
+                button.setBackground(new Color(135, 206, 235)); // Hard coding some button colors for pattern
+                                                                // demonstration
+            } else {
                 button.setOpaque(true);
                 button.setBorderPainted(false);
                 button.setBackground(new Color(0, 0, 0));
@@ -54,7 +53,7 @@ public class MemorySequenceGUI implements ActionListener {
         }
 
         boardPanel.add(gamePanel);
-        
+
         // Control panel will alow the user to control game state with buttons
         JPanel controlPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         controlPanel.setBackground(new Color(192, 192, 192));
@@ -83,23 +82,31 @@ public class MemorySequenceGUI implements ActionListener {
         mainPanel.add(boardPanel, BorderLayout.CENTER);
         mainPanel.add(controlPanel, BorderLayout.SOUTH);
         mainPanel.add(scorePanel, BorderLayout.NORTH);
-        
+
         mainFrame.add(mainPanel);
         mainFrame.setVisible(true);
     }
 
+    public void flashPattern() {
+        // flash initial step in pattern
+    }
+
     @Override
-    public void actionPerformed(ActionEvent event)
-    {
-        JButton button = (JButton)event.getSource();
+    public void actionPerformed(ActionEvent event) {
+        JButton button = (JButton) event.getSource();
         String text = button.getText();
     }
 
     @Override
-    public void update()
-    {
+    public void update() {
         if (game.isGameOver()) {
+            // have screen say message that game is over
+        }
 
+        else if (game.getUserPattern().size() == game.getPattern().size()) {
+            // disable all buttons
+            // call flashPattern() --> either next step or entire pattern - depending on
+            // game.getMode() being regular or advanced
         }
     }
 }
