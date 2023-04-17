@@ -13,10 +13,9 @@ public class MemorySequence {
     private int score;
     private boolean guessCheck;
 
-    public MemorySequence(int gridSize, String mode) {
+    public MemorySequence() {
         this.min = 1;
-        this.max = gridSize * gridSize;
-        this.mode = mode;
+        this.max = 9;
         this.score = 0;
         this.generateStep(); // Sets up the initial step in the pattern for when the game starts
     }
@@ -66,6 +65,10 @@ public class MemorySequence {
         return !this.guessCheck;
     }
 
+    public void setGridSize(int size) {
+        this.max = size * size;
+    }
+
     public ArrayList<Integer> getPattern() {
         return this.pattern;
     }
@@ -80,5 +83,9 @@ public class MemorySequence {
 
     public int getScore() {
         return this.score;
+    }
+
+    public int getSize() {
+        return this.max;
     }
 }
