@@ -58,6 +58,8 @@ public class MemorySequenceGUI implements ActionListener, GameObserver {
             button.setBackground(new Color(0, 0, 0));
             button.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 
+            button.setEnabled(false);
+
             button.addActionListener(this);
 
             buttons.add(button);
@@ -78,9 +80,6 @@ public class MemorySequenceGUI implements ActionListener, GameObserver {
             public void actionPerformed(ActionEvent e) {
                 flashPattern();
                 startButton.setEnabled(false);
-                for (JButton button : buttons) {
-                    button.setEnabled(true);
-                }
             }
         });
 
@@ -168,9 +167,6 @@ public class MemorySequenceGUI implements ActionListener, GameObserver {
 
         else if (game.getUserPattern().size() == 0) {
             this.flashPattern();
-            for (JButton button : buttons) {
-                button.setEnabled(true);
-            }
         }
     }
 }
