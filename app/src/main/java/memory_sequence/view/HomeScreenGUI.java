@@ -22,13 +22,11 @@ public class HomeScreenGUI implements ActionListener {
 
         JPanel mainPanel = new JPanel(new BorderLayout());
 
-        // Board Panel will hold the game title and game board
         JPanel boardPanel = new JPanel();
         boardPanel.setLayout(new BoxLayout(boardPanel, BoxLayout.Y_AXIS));
         boardPanel.setBackground(new Color(0, 0, 139));
         boardPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        // Title label for the game
         JLabel title = new JLabel("Memory Sequence Game", SwingConstants.CENTER);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         title.setFont(new Font("Arial", Font.BOLD, 20));
@@ -40,8 +38,6 @@ public class HomeScreenGUI implements ActionListener {
         question.setAlignmentY(Component.BOTTOM_ALIGNMENT);;
         question.setFont(new Font("Arial", Font.BOLD, 20));
         question.setForeground(new Color(255, 255, 255));
-
-
         boardPanel.add(question);
 
         JButton regular = new JButton("basic");
