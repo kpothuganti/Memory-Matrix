@@ -16,8 +16,8 @@ public class GameController implements ControllerInterface {
         
     }
 
-    public void userPressed(char buttonvalue) {
-        game.getClick(Character.getNumericValue(buttonvalue));
+    public void userPressed(String buttonvalue) {
+        game.getClick(Integer.parseInt(buttonvalue));
 
     }
 
