@@ -10,7 +10,7 @@ import memory_sequence.model.*;
 import memory_sequence.model.MemorySequence;
 
 
-public class HomeScreenGUI implements ActionListener {
+public class HomeScreenGUI {
 
     private ControllerInterface controller;
 
@@ -72,10 +72,5 @@ public class HomeScreenGUI implements ActionListener {
         mainPanel.add(boardPanel);
         mainFrame.add(mainPanel);
         mainFrame.setVisible(true);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        //work with this later
     }
 }
