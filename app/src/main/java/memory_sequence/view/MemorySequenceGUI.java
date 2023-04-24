@@ -129,7 +129,7 @@ public class MemorySequenceGUI implements GameObserver {
             lscreen.add(score);
             mainPanel.add(lscreen);
 
-           Timer timer = new Timer(5000, null);
+           Timer timer = new Timer(3000, null);
             timer.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
