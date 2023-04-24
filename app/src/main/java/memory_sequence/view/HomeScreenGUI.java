@@ -9,18 +9,22 @@ import memory_sequence.ControllerInterface;
 import memory_sequence.model.*;
 import memory_sequence.model.MemorySequence;
 
-
 public class HomeScreenGUI {
 
     private ControllerInterface controller;
 
-    public HomeScreenGUI(ControllerInterface controller)
-    {
+    public HomeScreenGUI(ControllerInterface controller) {
         JFrame mainFrame = new JFrame("Memory Sequence");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setSize(500, 500);
 
         JPanel mainPanel = new JPanel(new BorderLayout());
+
+        JPanel buttonPanel = new JPanel(new BorderLayout());
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(65, 0, 0, 0));
+        buttonPanel.setSize(200, 200);
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+        buttonPanel.setBackground(new Color(0, 0, 139));
 
         JPanel boardPanel = new JPanel();
         boardPanel.setLayout(new BoxLayout(boardPanel, BoxLayout.Y_AXIS));
@@ -35,39 +39,54 @@ public class HomeScreenGUI {
 
         JLabel question = new JLabel("Choose a Game Mode!");
         question.setAlignmentX(Component.CENTER_ALIGNMENT);
-        question.setAlignmentY(Component.BOTTOM_ALIGNMENT);;
+        question.setAlignmentY(Component.BOTTOM_ALIGNMENT);
         question.setFont(new Font("Arial", Font.BOLD, 20));
         question.setForeground(new Color(255, 255, 255));
         boardPanel.add(question);
 
-        JButton regular = new JButton("basic");
+        JButton regular = new JButton("Basic");
         regular.setAlignmentX(Component.CENTER_ALIGNMENT);
+        regular.setPreferredSize(new Dimension(150, 20));
         regular.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 controller.userChoose(regular.getText());
             }
         });
 
-        JButton expand = new JButton("expand");
+        JButton expand = new JButton("Expanded");
         expand.setAlignmentX(Component.CENTER_ALIGNMENT);
+        expand.setPreferredSize(new Dimension(150, 20));
         expand.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 controller.userChoose("expand");
             }
         });
 
-        JButton advanced = new JButton("advanced");
+        JButton advanced = new JButton("Advanced");
         advanced.setAlignmentX(Component.CENTER_ALIGNMENT);
+        advanced.setPreferredSize(new Dimension(150, 20));
         advanced.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 controller.userChoose("advanced");
             }
         });
 
-        boardPanel.add(regular);
-        boardPanel.add(expand);
-        boardPanel.add(advanced);
+        buttonPanel.add(regular);
+        buttonPanel.add(expand);
+        buttonPanel.add(advanced);
+
+        boardPanel.add(buttonPanel);
+
+        String gameInstructions = "<html><br/><br/><br/><br/><br/>Basic Mode: There will be a 3x3 grid of buttons in which a pattern will be shown. Move forward in the game by memorizing the pattern of buttons and pressing accordingly. You will see the entire pattern for each new step.<br/><br/>Expanded Mode: Same instructions as Basic Mode, except with a larger grid.<br/><br/>Advanced Mode: Same instructions as the Basic Mode, except the entire pattern won't be shown anymore - only each new step.<br/><br/>For all modes, the game ends when the pattern is entered incorrectly.</html>";
+
+        JLabel instructions = new JLabel(gameInstructions);
+        instructions.setAlignmentX(Component.CENTER_ALIGNMENT);
+        instructions.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+        ;
+        instructions.setFont(new Font("Arial", Font.PLAIN, 13));
+        instructions.setForeground(new Color(255, 255, 255));
+        boardPanel.add(instructions);
 
         mainPanel.add(boardPanel);
         mainFrame.add(mainPanel);
