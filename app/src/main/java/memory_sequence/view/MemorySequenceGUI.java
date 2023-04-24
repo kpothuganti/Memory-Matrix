@@ -40,7 +40,7 @@ public class MemorySequenceGUI implements GameObserver {
 
         mainFrame = new JFrame("Memory Sequence");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setSize(500, 600);
+        mainFrame.setSize(500, 500);
 
         mainPanel = new JPanel(new BorderLayout());
 

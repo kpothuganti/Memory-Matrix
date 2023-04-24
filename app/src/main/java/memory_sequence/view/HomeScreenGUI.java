@@ -17,7 +17,7 @@ public class HomeScreenGUI {
     public HomeScreenGUI(ControllerInterface controller) {
         mainFrame = new JFrame("Memory Sequence");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setSize(500, 500);
+        mainFrame.setSize(500, 600);
 
         JPanel mainPanel = new JPanel(new BorderLayout());
 
