@@ -17,7 +17,7 @@ public class MemorySequence {
 
     public MemorySequence() {
         this.min = 1;
-        this.max = 9;
+        // this.max = 9;
         this.score = 0;
         this.dimension = 3;
         this.mode = "basic";

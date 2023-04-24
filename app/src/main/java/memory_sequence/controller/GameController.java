@@ -9,11 +9,10 @@ public class GameController implements ControllerInterface {
     MemorySequence game;
     HomeScreenGUI hsgui;
 
-
     public GameController(MemorySequence game) {
         this.game = game;
         this.hsgui = new HomeScreenGUI(this);
-        
+
     }
 
     public void userPressed(String buttonvalue) {
@@ -21,20 +20,18 @@ public class GameController implements ControllerInterface {
 
     }
 
-    public void userChoose(String mode){
+    public void userChoose(String mode) {
 
-        if (mode.equals("expand")){
-            game.setMode("basic");
+        if (mode.equals("expand")) {
             game.setGridSize(4);
-        
-        }else if(mode.equals("advanced")) {
+            game.setMode("basic");
+        } else if (mode.equals("advanced")) {
             game.setGridSize(3);
             game.setMode(mode);
-        }
-        else {
+        } else {
             game.setGridSize(3);
             game.setMode("basic");
         }
-        this.gui = new MemorySequenceGUI(this, game); 
+        this.gui = new MemorySequenceGUI(this, game);
     }
 }

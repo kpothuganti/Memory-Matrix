@@ -41,7 +41,7 @@ public class GamePanel extends JPanel implements ActionListener {
         String text = button.getText();
         controller.userPressed(text);
     }
-    
+
     public void flashPattern() {
         ArrayList<Integer> pattern = game.getPattern();
 
@@ -50,7 +50,7 @@ public class GamePanel extends JPanel implements ActionListener {
         }
 
         if (game.getMode().equals("advanced")) {
-            int recentStep = pattern.get(pattern.size()-1);
+            int recentStep = pattern.get(pattern.size() - 1);
             buttons.get(recentStep - 1).setBackground(new Color(135, 206, 235)); // flash only the most recent step
             Timer timer = new Timer(500, null);
             timer.addActionListener(new ActionListener() {
@@ -71,11 +71,13 @@ public class GamePanel extends JPanel implements ActionListener {
             timer.addActionListener(new ActionListener() {
                 int index = 0;
                 boolean toggle = true;
+
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (index < pattern.size()) {
                         int buttonIndex = pattern.get(index) - 1;
                         if (toggle) {
+                            System.out.println(buttons.size());
                             buttons.get(buttonIndex).setBackground(new Color(135, 206, 235));
                         } else {
                             buttons.get(buttonIndex).setBackground(new Color(0, 0, 0));
@@ -94,4 +96,3 @@ public class GamePanel extends JPanel implements ActionListener {
         }
     }
 }
-
