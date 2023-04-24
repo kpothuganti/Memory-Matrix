@@ -28,6 +28,8 @@ public class MemorySequenceGUI implements GameObserver {
     JLabel highScoreLabel;
     JPanel scorePanel;
     JLabel scoreLabel;
+    JLabel lost;
+    JLabel score;
 
     public MemorySequenceGUI(ControllerInterface controller, MemorySequence game) {
 
@@ -96,6 +98,7 @@ public class MemorySequenceGUI implements GameObserver {
         mainPanel.add(scorePanel, BorderLayout.NORTH);
 
         mainFrame.add(mainPanel);
+        
         mainFrame.setVisible(true);
     }
     
@@ -103,21 +106,39 @@ public class MemorySequenceGUI implements GameObserver {
     public void update() {
         if (game.isGameOver()) {
             boardPanel.setVisible(false);
-            JLabel lost = new JLabel("You Lost");
-            mainFrame.add(lost);
+            
 
-            Timer timer = new Timer(400, null);
+            lost = new JLabel("YOU LOST THE GAME!");
+            lost.setFont(new Font("Arial", Font.BOLD, 20));
+            lost.setAlignmentX(Component.CENTER_ALIGNMENT);
+            lost.setForeground(Color.WHITE);
+
+            int value = game.getScore();
+            score = new JLabel("Score: " + value);
+            score.setFont(new Font("Arial", Font.BOLD, 20));
+            score.setAlignmentX(Component.CENTER_ALIGNMENT);
+            score.setForeground(Color.WHITE);
+            
+            JPanel lscreen = new JPanel(new BorderLayout());
+            lscreen.setLayout(new BoxLayout(lscreen, BoxLayout.Y_AXIS));
+            lscreen.setBorder(BorderFactory.createEmptyBorder(150, 0, 0, 0));
+            lscreen.setBackground(new Color(0, 0, 139));
+            lscreen.setAlignmentY(Component.CENTER_ALIGNMENT);
+
+            lscreen.add(lost);
+            lscreen.add(score);
+            mainPanel.add(lscreen);
+
+           Timer timer = new Timer(5000, null);
             timer.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    gamePanel.flashPattern();
+                    mainFrame.dispose();
                     timer.stop();
                 }
             });
             timer.start();
-
-            // have screen say message that game is over
-            this.mainFrame.dispose();
+            
         }
 
         else if (game.getUserPattern().size() == 0) {
