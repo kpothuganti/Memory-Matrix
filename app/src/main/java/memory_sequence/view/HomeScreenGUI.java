@@ -89,7 +89,7 @@ public class HomeScreenGUI {
         JLabel instructions = new JLabel(gameInstructions);
         instructions.setAlignmentX(Component.CENTER_ALIGNMENT);
         instructions.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-        ;
+    
         instructions.setFont(new Font("Arial", Font.PLAIN, 13));
         instructions.setForeground(new Color(255, 255, 255));
         boardPanel.add(instructions);
