@@ -102,6 +102,20 @@ public class MemorySequenceGUI implements GameObserver {
     @Override
     public void update() {
         if (game.isGameOver()) {
+            boardPanel.setVisible(false);
+            JLabel lost = new JLabel("You Lost");
+            mainFrame.add(lost);
+
+            Timer timer = new Timer(400, null);
+            timer.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    gamePanel.flashPattern();
+                    timer.stop();
+                }
+            });
+            timer.start();
+
             // have screen say message that game is over
             this.mainFrame.dispose();
         }

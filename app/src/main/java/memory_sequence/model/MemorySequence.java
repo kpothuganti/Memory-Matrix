@@ -53,6 +53,7 @@ public class MemorySequence {
                 this.pattern.clear();
                 this.userPattern.clear();
                 this.generateStep();
+                this.score = 0;
                 return;
             }
         }
@@ -104,4 +105,5 @@ public class MemorySequence {
     public int getGridDimension() {
         return this.dimension;
     }
+
 }
