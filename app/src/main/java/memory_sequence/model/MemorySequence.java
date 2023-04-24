@@ -50,6 +50,9 @@ public class MemorySequence {
         for (int i = 0; i < this.userPattern.size(); i++) {
             if (this.userPattern.get(i) != this.pattern.get(i)) {
                 this.guessCheck = false;
+                this.pattern.clear();
+                this.userPattern.clear();
+                this.generateStep();
                 return;
             }
         }

@@ -41,7 +41,7 @@ public class GamePanel extends JPanel implements ActionListener {
         String text = button.getText();
         controller.userPressed(text);
     }
-
+    
     public void flashPattern() {
         ArrayList<Integer> pattern = game.getPattern();
 

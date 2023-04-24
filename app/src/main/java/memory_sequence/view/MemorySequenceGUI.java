@@ -103,6 +103,7 @@ public class MemorySequenceGUI implements GameObserver {
     public void update() {
         if (game.isGameOver()) {
             // have screen say message that game is over
+            this.mainFrame.dispose();
         }
 
         else if (game.getUserPattern().size() == 0) {
