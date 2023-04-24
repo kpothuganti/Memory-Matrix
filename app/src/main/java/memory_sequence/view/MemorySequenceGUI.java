@@ -40,7 +40,7 @@ public class MemorySequenceGUI implements GameObserver {
 
         mainFrame = new JFrame("Memory Sequence");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setSize(500, 500);
+        mainFrame.setSize(500, 600);
 
         mainPanel = new JPanel(new BorderLayout());
 
@@ -59,7 +59,7 @@ public class MemorySequenceGUI implements GameObserver {
 
         gamePanel = new GamePanel(game, controller);
         boardPanel.add(gamePanel);
-    
+
         // Control panel will alow the user to control game state with buttons
         controlPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         controlPanel.setBackground(new Color(192, 192, 192));
@@ -98,15 +98,14 @@ public class MemorySequenceGUI implements GameObserver {
         mainPanel.add(scorePanel, BorderLayout.NORTH);
 
         mainFrame.add(mainPanel);
-        
+
         mainFrame.setVisible(true);
     }
-    
+
     @Override
     public void update() {
         if (game.isGameOver()) {
             boardPanel.setVisible(false);
-            
 
             lost = new JLabel("YOU LOST THE GAME!");
             lost.setFont(new Font("Arial", Font.BOLD, 20));
@@ -118,7 +117,7 @@ public class MemorySequenceGUI implements GameObserver {
             score.setFont(new Font("Arial", Font.BOLD, 20));
             score.setAlignmentX(Component.CENTER_ALIGNMENT);
             score.setForeground(Color.WHITE);
-            
+
             JPanel lscreen = new JPanel(new BorderLayout());
             lscreen.setLayout(new BoxLayout(lscreen, BoxLayout.Y_AXIS));
             lscreen.setBorder(BorderFactory.createEmptyBorder(150, 0, 0, 0));
@@ -129,16 +128,17 @@ public class MemorySequenceGUI implements GameObserver {
             lscreen.add(score);
             mainPanel.add(lscreen);
 
-           Timer timer = new Timer(3000, null);
+            Timer timer = new Timer(3000, null);
             timer.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     mainFrame.dispose();
+                    controller.returnHome();
                     timer.stop();
                 }
             });
             timer.start();
-            
+
         }
 
         else if (game.getUserPattern().size() == 0) {

@@ -37,4 +37,8 @@ public class GameController implements ControllerInterface {
         }
         this.gui = new MemorySequenceGUI(this, game);
     }
+
+    public void returnHome() {
+        hsgui.makeVisible();
+    }
 }

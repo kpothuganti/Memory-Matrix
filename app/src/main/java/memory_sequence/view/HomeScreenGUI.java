@@ -12,16 +12,17 @@ import memory_sequence.model.MemorySequence;
 public class HomeScreenGUI {
 
     private ControllerInterface controller;
+    private JFrame mainFrame;
 
     public HomeScreenGUI(ControllerInterface controller) {
-        JFrame mainFrame = new JFrame("Memory Sequence");
+        mainFrame = new JFrame("Memory Sequence");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setSize(500, 500);
 
         JPanel mainPanel = new JPanel(new BorderLayout());
 
         JPanel buttonPanel = new JPanel(new BorderLayout());
-        buttonPanel.setBorder(BorderFactory.createEmptyBorder(65, 0, 0, 0));
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(45, 0, 0, 0));
         buttonPanel.setSize(200, 200);
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
         buttonPanel.setBackground(new Color(0, 0, 139));
@@ -50,6 +51,7 @@ public class HomeScreenGUI {
         regular.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 controller.userChoose(regular.getText());
+                mainFrame.setVisible(false);
             }
         });
 
@@ -59,6 +61,7 @@ public class HomeScreenGUI {
         expand.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 controller.userChoose("expand");
+                mainFrame.setVisible(false);
             }
         });
 
@@ -69,16 +72,19 @@ public class HomeScreenGUI {
 
             public void actionPerformed(ActionEvent e) {
                 controller.userChoose("advanced");
+                mainFrame.setVisible(false);
             }
         });
 
         buttonPanel.add(regular);
+        buttonPanel.add(Box.createRigidArea(new Dimension(0, 20)));
         buttonPanel.add(expand);
+        buttonPanel.add(Box.createRigidArea(new Dimension(0, 20)));
         buttonPanel.add(advanced);
 
         boardPanel.add(buttonPanel);
 
-        String gameInstructions = "<html><br/><br/><br/><br/><br/>Basic Mode: There will be a 3x3 grid of buttons in which a pattern will be shown. Move forward in the game by memorizing the pattern of buttons and pressing accordingly. You will see the entire pattern for each new step.<br/><br/>Expanded Mode: Same instructions as Basic Mode, except with a larger grid.<br/><br/>Advanced Mode: Same instructions as the Basic Mode, except the entire pattern won't be shown anymore - only each new step.<br/><br/>For all modes, the game ends when the pattern is entered incorrectly.</html>";
+        String gameInstructions = "<html><br/><br/><br/><br/>Basic Mode: There will be a 3x3 grid of buttons in which a pattern will be shown. Move forward in the game by memorizing the pattern of buttons and pressing accordingly. You will see the entire pattern for each new step.<br/><br/>Expanded Mode: Same instructions as Basic Mode, except with a larger grid.<br/><br/>Advanced Mode: Same instructions as the Basic Mode, except the entire pattern won't be shown anymore - only each new step.<br/><br/>For all modes, the game ends when the pattern is entered incorrectly.</html>";
 
         JLabel instructions = new JLabel(gameInstructions);
         instructions.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -91,5 +97,9 @@ public class HomeScreenGUI {
         mainPanel.add(boardPanel);
         mainFrame.add(mainPanel);
         mainFrame.setVisible(true);
+    }
+
+    public void makeVisible() {
+        this.mainFrame.setVisible(true);
     }
 }
