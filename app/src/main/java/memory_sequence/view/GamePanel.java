@@ -50,20 +50,22 @@ public class GamePanel extends JPanel implements ActionListener {
         }
 
         if (game.getMode().equals("advanced")) {
-            int recentStep = pattern.get(pattern.size() - 1);
-            buttons.get(recentStep - 1).setBackground(new Color(135, 206, 235)); // flash only the most recent step
-            Timer timer = new Timer(500, null);
-            timer.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    buttons.get(recentStep - 1).setBackground(new Color(0, 0, 0)); // turn off the flash
-                    for (JButton button : buttons) {
-                        button.setEnabled(true); // enable all buttons
+            if (!pattern.isEmpty()) {
+                int recentStep = pattern.get(pattern.size() - 1);
+                buttons.get(recentStep - 1).setBackground(new Color(135, 206, 235)); // flash only the most recent step
+                Timer timer = new Timer(500, null);
+                timer.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        buttons.get(recentStep - 1).setBackground(new Color(0, 0, 0)); // turn off the flash
+                        for (JButton button : buttons) {
+                            button.setEnabled(true); // enable all buttons
+                        }
+                        timer.stop();
                     }
-                    timer.stop();
-                }
-            });
-            timer.start();
+                });
+                timer.start();
+            }
         }
 
         if (game.getMode().equals("basic")) {
@@ -77,7 +79,6 @@ public class GamePanel extends JPanel implements ActionListener {
                     if (index < pattern.size()) {
                         int buttonIndex = pattern.get(index) - 1;
                         if (toggle) {
-                            System.out.println(buttons.size());
                             buttons.get(buttonIndex).setBackground(new Color(135, 206, 235));
                         } else {
                             buttons.get(buttonIndex).setBackground(new Color(0, 0, 0));

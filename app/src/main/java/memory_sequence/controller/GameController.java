@@ -23,12 +23,15 @@ public class GameController implements ControllerInterface {
     public void userChoose(String mode) {
 
         if (mode.equals("expand")) {
+            game = new MemorySequence();
             game.setGridSize(4);
             game.setMode("basic");
         } else if (mode.equals("advanced")) {
+            game = new MemorySequence();
             game.setGridSize(3);
             game.setMode(mode);
         } else {
+            game = new MemorySequence();
             game.setGridSize(3);
             game.setMode("basic");
         }

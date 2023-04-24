@@ -17,7 +17,7 @@ public class MemorySequence {
 
     public MemorySequence() {
         this.min = 1;
-        // this.max = 9;
+        this.max = 9;
         this.score = 0;
         this.dimension = 3;
         this.mode = "basic";
@@ -50,10 +50,6 @@ public class MemorySequence {
         for (int i = 0; i < this.userPattern.size(); i++) {
             if (this.userPattern.get(i) != this.pattern.get(i)) {
                 this.guessCheck = false;
-                this.pattern.clear();
-                this.userPattern.clear();
-                this.generateStep();
-                this.score = 0;
                 return;
             }
         }
