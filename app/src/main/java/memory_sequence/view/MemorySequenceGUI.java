@@ -38,7 +38,7 @@ public class MemorySequenceGUI implements GameObserver {
 
         this.game.register(this);
 
-        mainFrame = new JFrame("Memory Sequence");
+        mainFrame = new JFrame("Memory Matrix");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setSize(500, 500);
 
@@ -51,7 +51,7 @@ public class MemorySequenceGUI implements GameObserver {
         boardPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         // Title label for the game
-        title = new JLabel("Memory Sequence Game", SwingConstants.CENTER);
+        title = new JLabel("Memory Matrix", SwingConstants.CENTER);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         title.setFont(new Font("Arial", Font.BOLD, 20));
         title.setForeground(new Color(255, 255, 255));

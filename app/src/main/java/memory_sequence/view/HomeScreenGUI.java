@@ -15,7 +15,7 @@ public class HomeScreenGUI {
     private JFrame mainFrame;
 
     public HomeScreenGUI(ControllerInterface controller) {
-        mainFrame = new JFrame("Memory Sequence");
+        mainFrame = new JFrame("Memory Matrix");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setSize(500, 600);
 
@@ -32,7 +32,7 @@ public class HomeScreenGUI {
         boardPanel.setBackground(new Color(0, 0, 139));
         boardPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        JLabel title = new JLabel("Memory Sequence Game", SwingConstants.CENTER);
+        JLabel title = new JLabel("Memory Matrix", SwingConstants.CENTER);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         title.setFont(new Font("Arial", Font.BOLD, 20));
         title.setForeground(new Color(255, 255, 255));
