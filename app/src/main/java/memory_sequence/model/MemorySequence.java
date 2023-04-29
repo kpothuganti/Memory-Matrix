@@ -1,19 +1,22 @@
 package memory_sequence.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import memory_sequence.GameObserver;
 
-public class MemorySequence {
-    private int min;
-    private int max;
-    private String mode;
-    private ArrayList<Integer> pattern = new ArrayList<Integer>();
-    private ArrayList<Integer> userPattern = new ArrayList<Integer>();
-    private ArrayList<GameObserver> observers = new ArrayList<GameObserver>();
-    private int score;
-    private boolean guessCheck;
-    private int dimension;
+public class MemorySequence implements Serializable{
+    private transient int min;
+    private transient int max;
+    private transient String mode;
+    private transient ArrayList<Integer> pattern = new ArrayList<Integer>();
+    private transient ArrayList<Integer> userPattern = new ArrayList<Integer>();
+    private transient ArrayList<GameObserver> observers = new ArrayList<GameObserver>();
+    private transient int score;
+    private transient boolean guessCheck;
+    private transient int dimension;
+
+    private int highScore;
 
     public MemorySequence() {
         this.min = 1;
@@ -21,7 +24,7 @@ public class MemorySequence {
         this.score = 0;
         this.dimension = 3;
         this.mode = "basic";
-        this.generateStep(); // Sets up the initial step in the pattern for when the game starts
+        this.generateStep();
     }
 
     public void register(GameObserver observer) {
@@ -54,12 +57,14 @@ public class MemorySequence {
             }
         }
 
-        // Once the round is over and each guess is correct, reset the userPattern,
-        // update score, make next step
         if (this.userPattern.size() == this.pattern.size()) {
             this.generateStep();
             this.userPattern.clear();
             this.score += 1;
+            
+            if (this.score > this.highScore) {
+                this.highScore = this.score;
+            }
         }
 
         this.guessCheck = true;
@@ -102,4 +107,11 @@ public class MemorySequence {
         return this.dimension;
     }
 
+    public void setHighScore(int score) {
+        this.highScore = score;
+    }
+
+    public int getHighScore() {
+        return this.highScore;
+    }
 }

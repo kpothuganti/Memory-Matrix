@@ -16,7 +16,6 @@ public class MemorySequenceGUI implements GameObserver {
     private MemorySequence game;
     private ControllerInterface controller;
 
-    // All components
     JFrame mainFrame;
     JPanel mainPanel;
     JPanel boardPanel;
@@ -30,6 +29,7 @@ public class MemorySequenceGUI implements GameObserver {
     JLabel scoreLabel;
     JLabel lost;
     JLabel score;
+    JLabel highScore;
 
     public MemorySequenceGUI(ControllerInterface controller, MemorySequence game) {
 
@@ -44,13 +44,11 @@ public class MemorySequenceGUI implements GameObserver {
 
         mainPanel = new JPanel(new BorderLayout());
 
-        // Board Panel will hold the game title and game board
         boardPanel = new JPanel();
         boardPanel.setLayout(new BoxLayout(boardPanel, BoxLayout.Y_AXIS));
         boardPanel.setBackground(new Color(0, 0, 139));
         boardPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        // Title label for the game
         title = new JLabel("Memory Matrix", SwingConstants.CENTER);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         title.setFont(new Font("Arial", Font.BOLD, 20));
@@ -60,37 +58,34 @@ public class MemorySequenceGUI implements GameObserver {
         gamePanel = new GamePanel(game, controller);
         boardPanel.add(gamePanel);
 
-        // Control panel will alow the user to control game state with buttons
         controlPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         controlPanel.setBackground(new Color(192, 192, 192));
 
         startButton = new JButton("Start");
-        startButton.setEnabled(true); // To represent that Start is disabled once the game starts
+        resetButton = new JButton("Reset");
+        resetButton.setEnabled(false);
 
         startButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 gamePanel.flashPattern();
                 startButton.setEnabled(false);
+                resetButton.setEnabled(true);
             }
         });
-
-        resetButton = new JButton("Reset");
 
         controlPanel.add(startButton);
         controlPanel.add(resetButton);
 
-        // To keep track of user score
         scoreLabel = new JLabel("Score: " + game.getScore());
         scoreLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        highScoreLabel = new JLabel("High Score: 101");
+        highScoreLabel = new JLabel("High Score: " + game.getHighScore());
         highScoreLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        // Create a JPanel to hold both labels horizontally
         scorePanel = new JPanel();
         scorePanel.setLayout(new BoxLayout(scorePanel, BoxLayout.X_AXIS));
         scorePanel.add(scoreLabel);
-        scorePanel.add(Box.createHorizontalStrut(300)); // Add some spacing between the labels
+        scorePanel.add(Box.createHorizontalStrut(300));
         scorePanel.add(highScoreLabel);
 
         mainPanel.add(boardPanel, BorderLayout.CENTER);
@@ -112,11 +107,17 @@ public class MemorySequenceGUI implements GameObserver {
             lost.setAlignmentX(Component.CENTER_ALIGNMENT);
             lost.setForeground(Color.WHITE);
 
-            int value = game.getScore();
-            score = new JLabel("Score: " + value);
+            int scoreValue = game.getScore();
+            score = new JLabel("Score: " + scoreValue);
             score.setFont(new Font("Arial", Font.BOLD, 20));
             score.setAlignmentX(Component.CENTER_ALIGNMENT);
             score.setForeground(Color.WHITE);
+
+            int highScoreValue = game.getHighScore();
+            highScore = new JLabel("High Score: " + highScoreValue);
+            highScore.setFont(new Font("Arial", Font.BOLD, 20));
+            highScore.setAlignmentX(Component.CENTER_ALIGNMENT);
+            highScore.setForeground(Color.WHITE);
 
             JPanel lscreen = new JPanel(new BorderLayout());
             lscreen.setLayout(new BoxLayout(lscreen, BoxLayout.Y_AXIS));
@@ -126,6 +127,7 @@ public class MemorySequenceGUI implements GameObserver {
 
             lscreen.add(lost);
             lscreen.add(score);
+            lscreen.add(highScore);
             mainPanel.add(lscreen);
 
             Timer timer = new Timer(2000, null);
@@ -143,8 +145,7 @@ public class MemorySequenceGUI implements GameObserver {
 
         else if (game.getUserPattern().size() == 0) {
             this.scoreLabel.setText("Score: " + game.getScore());
-
-            // Adding a slight delay before showing the pattern of the next round
+            this.highScoreLabel.setText("High Score: " + game.getHighScore());
             Timer timer = new Timer(400, null);
             timer.addActionListener(new ActionListener() {
                 @Override

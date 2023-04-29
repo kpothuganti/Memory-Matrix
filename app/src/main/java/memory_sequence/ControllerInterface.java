@@ -8,4 +8,8 @@ public interface ControllerInterface {
     public void userChoose(String mode);
 
     public void returnHome();
+
+    public void saveState();
+    
+    public void loadState();
 }
