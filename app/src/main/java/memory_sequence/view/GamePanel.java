@@ -40,15 +40,17 @@ public class GamePanel extends JPanel implements ActionListener {
         JButton button = (JButton) event.getSource();
         String text = button.getText();
         controller.userPressed(text);
+        if (game.getUserPattern().size() == 0)
+        {
+            for (JButton b : buttons) {
+                b.setEnabled(false);
+            }
+        }
     }
 
     public void flashPattern() {
         ArrayList<Integer> pattern = game.getPattern();
-
-        for (JButton button : buttons) {
-            button.setEnabled(false);
-        }
-
+        
         if (game.getMode().equals("advanced")) {
             if (!pattern.isEmpty()) {
                 int recentStep = pattern.get(pattern.size() - 1);
