@@ -4,11 +4,40 @@
 package memory_sequence;
 
 import org.junit.Test;
+
+import memory_sequence.model.MemorySequence;
+
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 public class AppTest {
-    @Test public void appHasAGreeting() {
-        App classUnderTest = new App();
-        assertNotNull("app should have a greeting", classUnderTest.getGreeting());
+
+    @Test public void basicMode() {
+        MemorySequence game = new MemorySequence();
+        game.setMode("basic");
+        ArrayList<Integer> pattern = game.getPattern();
+        game.getClick(pattern.get(0));
+        game.generateStep();
+        int n = pattern.get(1);
+       
+        //assertEquals("Pattern()" + pattern, , n, n);
+
     }
+
+     @Test public void expandedMode() {
+        MemorySequence game = new MemorySequence();
+        game.setMode("expanded");
+    }
+
+    @Test public void advancedMode(){
+        MemorySequence game = new MemorySequence();
+        game.setMode("advanced");
+    }
+
+    @Test public void failure(){
+        MemorySequence game = new MemorySequence();
+        game.setMode("basic");
+    } 
+     
 }
