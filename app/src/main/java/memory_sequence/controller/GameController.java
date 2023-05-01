@@ -59,14 +59,28 @@ public class GameController implements ControllerInterface {
             if (file.exists()) {
                 FileInputStream fileIn = new FileInputStream(file);
                 ObjectInputStream objectIn = new ObjectInputStream(fileIn);
-                game = (MemorySequence) objectIn.readObject();
+                Object obj = objectIn.readObject();
+                if (obj instanceof MemorySequence) {
+                    game = (MemorySequence) obj;
+                    System.out.println("Game state loaded successfully.");
+                } else {
+                    System.out.println("File does not contain a valid game state.");
+                    game = new MemorySequence();
+                }
                 objectIn.close();
                 fileIn.close();
             } else {
                 game = new MemorySequence();
             }
-        } catch (Exception error) {
-            System.out.println(error.getMessage());
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found: " + e.getMessage());
+            game = new MemorySequence();
+        } catch (IOException e) {
+            System.out.println("Error reading file: " + e.getMessage());
+            game = new MemorySequence();
+        } catch (ClassNotFoundException e) {
+            System.out.println("Error deserializing game state: " + e.getMessage());
+            game = new MemorySequence();
         }
     }
 }

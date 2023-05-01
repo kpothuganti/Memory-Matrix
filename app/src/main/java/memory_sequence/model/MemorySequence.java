@@ -15,6 +15,7 @@ public class MemorySequence implements Serializable {
     private transient int score;
     private transient boolean guessCheck;
     private transient int dimension;
+    private transient int resetCount;
 
     private int highScore;
 
@@ -24,6 +25,7 @@ public class MemorySequence implements Serializable {
         this.score = 0;
         this.dimension = 3;
         this.mode = "basic";
+        this.resetCount = 0;
         this.generateStep();
     }
 
@@ -116,10 +118,14 @@ public class MemorySequence implements Serializable {
     }
     
     public void reset() {
+        this.resetCount += 1;
         this.userPattern.clear();
         this.pattern.clear();
-
         this.generateStep();
         this.score = 0;
+    }
+
+    public int getResets() {
+        return this.resetCount;
     }
 }

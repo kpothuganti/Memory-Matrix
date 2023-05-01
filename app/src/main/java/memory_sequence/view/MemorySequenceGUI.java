@@ -69,25 +69,26 @@ public class MemorySequenceGUI implements GameObserver {
             public void actionPerformed(ActionEvent e) {
                 gamePanel.flashPattern();
                 startButton.setEnabled(false);
-                resetButton.setEnabled(true);
+                if (game.getResets() == 0){
+                    resetButton.setEnabled(true);
+                }
             }
         });
         
-        resetButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                startButton.setEnabled(true);
-                resetButton.setEnabled(false);
-
-                game.reset();
-            }
-        });
-        
-
         controlPanel.add(startButton);
         controlPanel.add(resetButton);
 
         scoreLabel = new JLabel("Score: " + game.getScore());
         scoreLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        resetButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                startButton.setEnabled(true);
+                resetButton.setEnabled(false);
+                game.reset();
+                scoreLabel.setText("Score: " + game.getScore());
+            }
+        });
 
         highScoreLabel = new JLabel("High Score: " + game.getHighScore());
         highScoreLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
