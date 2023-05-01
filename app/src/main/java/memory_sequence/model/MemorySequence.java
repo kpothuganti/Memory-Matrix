@@ -114,7 +114,7 @@ public class MemorySequence implements Serializable {
     public int getHighScore() {
         return this.highScore;
     }
-
+    
     public void reset() {
         this.userPattern.clear();
         this.pattern.clear();
