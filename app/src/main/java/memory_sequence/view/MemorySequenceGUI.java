@@ -73,6 +73,15 @@ public class MemorySequenceGUI implements GameObserver {
             }
         });
 
+        resetButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                startButton.setEnabled(true);
+                resetButton.setEnabled(false);
+
+                game.reset();
+            }
+        });
+
         controlPanel.add(startButton);
         controlPanel.add(resetButton);
 

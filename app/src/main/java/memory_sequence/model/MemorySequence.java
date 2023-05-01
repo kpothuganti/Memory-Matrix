@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import memory_sequence.GameObserver;
 
-public class MemorySequence implements Serializable{
+public class MemorySequence implements Serializable {
     private transient int min;
     private transient int max;
     private transient String mode;
@@ -61,7 +61,7 @@ public class MemorySequence implements Serializable{
             this.generateStep();
             this.userPattern.clear();
             this.score += 1;
-            
+
             if (this.score > this.highScore) {
                 this.highScore = this.score;
             }
@@ -113,5 +113,13 @@ public class MemorySequence implements Serializable{
 
     public int getHighScore() {
         return this.highScore;
+    }
+
+    public void reset() {
+        this.userPattern.clear();
+        this.pattern.clear();
+
+        this.generateStep();
+        this.score = 0;
     }
 }
