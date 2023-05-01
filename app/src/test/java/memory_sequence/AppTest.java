@@ -18,7 +18,7 @@ public class AppTest {
         game.setMode("basic");
         ArrayList<Integer> pattern = game.getPattern();
         
-        assertEquals("Pattern length()", 1, pattern.size());
+        assertEquals( 1, pattern.size());
     }
 
     @Test public void patternAfterGuesses() {
@@ -30,7 +30,7 @@ public class AppTest {
         ArrayList<Integer> pattern = game.getPattern();
 
 
-        assertEquals("Pattern after guesses: ", 3, pattern.size());        
+        assertEquals( 3, pattern.size());        
     }
 
     @Test public void isGameOver(){
@@ -40,7 +40,7 @@ public class AppTest {
         game.getClick(10);
         
 
-        assertEquals("is Game Over:" , true, game.isGameOver());
+        assertEquals( true, game.isGameOver());
 
     }
 
@@ -51,7 +51,7 @@ public class AppTest {
         game.getClick(game.getPattern().get(0));
         game.getClick(game.getPattern().get(1));
 
-        assertEquals("Game is not Over:", false, game.isGameOver());
+        assertEquals( false, game.isGameOver());
     }  
 
     @Test public void getHighScore(){
@@ -63,7 +63,7 @@ public class AppTest {
         game.reset();
         game.getClick(game.getPattern().get(0));
 
-        assertEquals("The high score is: ", 2, game.getHighScore());
+        assertEquals( 2, game.getHighScore());
 
     }
 
@@ -77,14 +77,14 @@ public class AppTest {
         game.getClick(game.getPattern().get(1));
         game.getClick(game.getPattern().get(2));
 
-        assertEquals("The score is: ", 3 , game.getScore());
+        assertEquals( 3 , game.getScore());
     }
 
     @Test public void setMode(){
         MemorySequence game = new MemorySequence();
         game.setMode("advanced");
 
-        assertEquals("The game mode is: ", "advanced", game.getMode());
+        assertEquals( "advanced", game.getMode());
     }
 
     @Test public void testReset(){
@@ -95,7 +95,8 @@ public class AppTest {
         game.getClick(game.getPattern().get(1));
         game.reset();
 
-        assertEquals("The Reset did not work ", 0, game.getScore());
+        assertEquals( 0, game.getScore());
+        assertEquals( 0, game.getUserPattern().size());
     }
     
      
