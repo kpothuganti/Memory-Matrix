@@ -44,9 +44,49 @@ public class AppTest {
 
     }
 
-    @Test public void failure(){
+    @Test public void notGameOver(){
         MemorySequence game = new MemorySequence();
         game.setMode("basic");
+        game.getClick(game.getPattern().get(0));
+        game.getClick(game.getPattern().get(0));
+        game.getClick(game.getPattern().get(1));
+
+        assertEquals("Game is not Over:", false, game.isGameOver());
     }  
+
+    @Test public void getHighScore(){
+        MemorySequence game = new MemorySequence();
+        game.setMode("basic");
+        game.getClick(game.getPattern().get(0));
+        game.getClick(game.getPattern().get(0));
+        game.getClick(game.getPattern().get(1));
+        game.reset();
+        game.getClick(game.getPattern().get(0));
+
+        assertEquals("The high score is: ", 2, game.getHighScore());
+
+    }
+
+    @Test public void getScore(){
+        MemorySequence game = new MemorySequence();
+        game.setMode("basic");
+        game.getClick(game.getPattern().get(0));
+        game.getClick(game.getPattern().get(0));
+        game.getClick(game.getPattern().get(1));
+        game.getClick(game.getPattern().get(0));
+        game.getClick(game.getPattern().get(1));
+        game.getClick(game.getPattern().get(2));
+
+        assertEquals("The score is: ", 3 , game.getScore());
+    }
+
+    @Test public void setMode(){
+        MemorySequence game = new MemorySequence();
+        game.setMode("advanced");
+
+        assertEquals("The game mode is: ", "advanced", game.getMode());
+    }
+
+    
      
 }
