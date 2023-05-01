@@ -69,9 +69,7 @@ public class MemorySequenceGUI implements GameObserver {
             public void actionPerformed(ActionEvent e) {
                 gamePanel.flashPattern();
                 startButton.setEnabled(false);
-                if (game.getResets() == 0){
-                    resetButton.setEnabled(true);
-                }
+                resetButton.setEnabled(true);
             }
         });
         
