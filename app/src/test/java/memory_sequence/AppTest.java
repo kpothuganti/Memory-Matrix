@@ -87,6 +87,16 @@ public class AppTest {
         assertEquals("The game mode is: ", "advanced", game.getMode());
     }
 
+    @Test public void testReset(){
+        MemorySequence game = new MemorySequence();
+        game.setMode("basic");
+        game.getClick(game.getPattern().get(0));
+        game.getClick(game.getPattern().get(0));
+        game.getClick(game.getPattern().get(1));
+        game.reset();
+
+        assertEquals("The Reset did not work ", 0, game.getScore());
+    }
     
      
 }
