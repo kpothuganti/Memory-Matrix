@@ -13,31 +13,40 @@ import java.util.ArrayList;
 
 public class AppTest {
 
-    @Test public void basicMode() {
+    @Test public void intialPatternSize() {
         MemorySequence game = new MemorySequence();
         game.setMode("basic");
         ArrayList<Integer> pattern = game.getPattern();
-        game.getClick(pattern.get(0));
-        game.generateStep();
-        int n = pattern.get(1);
-       
-        //assertEquals("Pattern()" + pattern, , n, n);
-
+        
+        assertEquals("Pattern length()", 1, pattern.size());
     }
 
-     @Test public void expandedMode() {
+    @Test public void patternAfterGuesses() {
         MemorySequence game = new MemorySequence();
-        game.setMode("expanded");
+        game.setMode("basic");
+        game.getClick(game.getPattern().get(0));
+        game.getClick(game.getPattern().get(0));
+        game.getClick(game.getPattern().get(1));
+        ArrayList<Integer> pattern = game.getPattern();
+
+
+        assertEquals("Pattern after guesses: ", 3, pattern.size());        
     }
 
-    @Test public void advancedMode(){
+    @Test public void isGameOver(){
         MemorySequence game = new MemorySequence();
-        game.setMode("advanced");
+        game.setMode("basic");
+        game.getClick(game.getPattern().get(0));
+        game.getClick(10);
+        
+
+        assertEquals("is Game Over:" , true, game.isGameOver());
+
     }
 
     @Test public void failure(){
         MemorySequence game = new MemorySequence();
         game.setMode("basic");
-    } 
+    }  
      
 }
