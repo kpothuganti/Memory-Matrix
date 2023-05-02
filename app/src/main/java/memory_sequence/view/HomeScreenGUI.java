@@ -84,12 +84,12 @@ public class HomeScreenGUI {
 
         boardPanel.add(buttonPanel);
 
-        String gameInstructions = "<html><br/><br/><br/><br/>Basic Mode: There will be a 3x3 grid of buttons in which a pattern will be shown. Move forward in the game by memorizing the pattern of buttons and pressing accordingly. You will see the entire pattern for each new step.<br/><br/>Expanded Mode: Same instructions as Basic Mode, except with a larger grid.<br/><br/>Advanced Mode: Same instructions as the Basic Mode, except the entire pattern won't be shown anymore - only each new step.<br/><br/>For all modes, the game ends when the pattern is entered incorrectly.</html>";
+        String gameInstructions = "<html><br/><br/><br/><br/>Basic Mode: There will be a 3x3 grid of buttons in which a pattern will be shown. Move forward in the game by memorizing the pattern of buttons and pressing accordingly. You will see the entire pattern for each new step.<br/><br/>Expanded Mode: Same instructions as Basic Mode, except with a larger grid.<br/><br/>Advanced Mode: Same instructions as the Basic Mode, except the entire pattern won't be shown anymore - only each new step.<br/><br/>For all modes, the game ends when the pattern is entered incorrectly.<br/><br/>Reset: Resets the score and the pattern.</html>";
 
         JLabel instructions = new JLabel(gameInstructions);
         instructions.setAlignmentX(Component.CENTER_ALIGNMENT);
         instructions.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-    
+
         instructions.setFont(new Font("Arial", Font.PLAIN, 13));
         instructions.setForeground(new Color(255, 255, 255));
         boardPanel.add(instructions);
