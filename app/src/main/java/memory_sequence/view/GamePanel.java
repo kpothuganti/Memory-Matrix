@@ -98,4 +98,10 @@ public class GamePanel extends JPanel implements ActionListener {
             timer.start();
         }
     }
+
+    public void disableButtons() {
+        for (JButton button : buttons) {
+            button.setEnabled(false);
+        }
+    }
 }
