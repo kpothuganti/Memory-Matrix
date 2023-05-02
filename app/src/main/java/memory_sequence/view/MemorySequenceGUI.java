@@ -111,6 +111,7 @@ public class MemorySequenceGUI implements GameObserver {
     public void update() {
         if (game.isGameOver()) {
             boardPanel.setVisible(false);
+            resetButton.setEnabled(false);
 
             lost = new JLabel("YOU LOST THE GAME!");
             lost.setFont(new Font("Arial", Font.BOLD, 20));
